@@ -19,7 +19,8 @@ body{
     gap: 15px;
 }
 
-.add-box ,.iconic ,.bottom-content {
+.add-box ,.iconic ,.bottom-content,
+.settings .menu li {
     display: flex;
     align-items: center;
     justify-content : space-between;
@@ -87,4 +88,57 @@ border-top: 1px solid #ccc;
     color: rgb(38, 38, 38);
     font-size: 15px;
     cursor: pointer;
+}
+
+.settings {
+    position: relative;
+}
+
+.settings .menu {
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+    padding: 5px 0;
+    background-color: #fff;
+    border-radius:4px;
+    transform: scale(0);
+    transform-origin: bottom right;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.settings:hover .menu {
+    transform:scale(1);
+}
+
+.settings .menu li {
+    height: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0;
+    padding: 17px 15px;
+    justify-content: flex-start;
+
+}
+.menu li:hover {
+    background-color: #dbdbdb;
+}
+
+.menu li  iconify-icon {
+    padding-right: 8px;
+}
+
+/* Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -Popup -*/
+
+.popup-box{
+    position:fixed ;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.popup-box .popup {
+    position:absolute;
 }
