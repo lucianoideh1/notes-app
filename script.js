@@ -14,8 +14,40 @@ addBox.addEventListener("click",()=>{
 })
 
 closeIcon.addEventListener("click",()=>{
+    titleTag.value = "";
+    descTag.value = "";
     popupBox.classList.remove("show");
 })
+
+function showNotes(){
+    document.querySelectorAll(".note").forEach(note => note.remove());
+    notes.forEach((note)=>{
+        let liTag =
+         
+        `
+        <li class="note">
+            <div class="details">
+            <p>${note.title}</p>  
+            <span>${note.description}</span>
+            </div>
+            <div class="bottom-content">
+                <span>${note.date}</span>
+                <div class="settings">
+                    <iconify-icon icon="akar-icons:settings-horizontal"></iconify-icon>
+                    <ul class="menu">
+                        <li><iconify-icon icon="bi:pen"></iconify-icon>Edit</li>
+                        <li><iconify-icon icon="bi:trash-fill"></iconify-icon>Delete</li>
+                    </ul>
+                </div>
+            </div>
+        </li> 
+        `;
+        addBox.insertAdjacentHTML("afterend",liTag)
+    })
+}
+
+showNotes();
+
 
 addBtn.addEventListener("click", e =>{
     e.preventDefault();
@@ -40,5 +72,6 @@ addBtn.addEventListener("click", e =>{
         
         localStorage.setItem("notes",JSON.stringify(notes));
         closeIcon.click();
+        showNotes();
     }
 })
