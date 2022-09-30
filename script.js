@@ -21,7 +21,7 @@ closeIcon.addEventListener("click",()=>{
 
 function showNotes(){
     document.querySelectorAll(".note").forEach(note => note.remove());
-    notes.forEach((note)=>{
+    notes.forEach((note, index)=>{
         let liTag =
          
         `
@@ -33,10 +33,10 @@ function showNotes(){
             <div class="bottom-content">
                 <span>${note.date}</span>
                 <div class="settings">
-                    <iconify-icon icon="akar-icons:settings-horizontal"></iconify-icon>
+                    <iconify-icon icon="akar-icons:settings-horizontal" onClick="showMenu(this)"></iconify-icon>
                     <ul class="menu">
                         <li><iconify-icon icon="bi:pen"></iconify-icon>Edit</li>
-                        <li><iconify-icon icon="bi:trash-fill"></iconify-icon>Delete</li>
+                        <li><iconify-icon icon="bi:trash-fill" onClick="deleteNote(${index})"></iconify-icon>Delete</li>
                     </ul>
                 </div>
             </div>
@@ -47,6 +47,22 @@ function showNotes(){
 }
 
 showNotes();
+
+function showMenu(elem){
+    elem.parentElement.classList.add("show");
+    document.addEventListener("click", e => {
+        if (e.target.tagName != "ICONIFY-ICON" || e.target != elem){
+            elem.parentElement.classList.remove("show");
+        }
+    })
+}
+
+function deleteNote(noteId){
+    notes.splice(noteId,1);
+    localStorage.setItem("notes",JSON.stringify(notes));
+
+    showNotes();
+}
 
 
 addBtn.addEventListener("click", e =>{
