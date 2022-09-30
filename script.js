@@ -36,7 +36,7 @@ function showNotes(){
                     <iconify-icon icon="akar-icons:settings-horizontal" onClick="showMenu(this)"></iconify-icon>
                     <ul class="menu">
                         <li><iconify-icon icon="bi:pen"></iconify-icon>Edit</li>
-                        <li><iconify-icon icon="bi:trash-fill" onClick="deleteNote(${index})"></iconify-icon>Delete</li>
+                        <li onClick="deleteNote(${index})"><iconify-icon icon="bi:trash-fill" ></iconify-icon>Delete</li>
                     </ul>
                 </div>
             </div>
@@ -58,9 +58,8 @@ function showMenu(elem){
 }
 
 function deleteNote(noteId){
-    notes.splice(noteId,1);
+    notes.splice(noteId, 1);
     localStorage.setItem("notes",JSON.stringify(notes));
-
     showNotes();
 }
 
